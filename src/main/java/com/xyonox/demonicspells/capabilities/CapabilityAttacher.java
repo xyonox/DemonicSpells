@@ -47,7 +47,16 @@ public class CapabilityAttacher {
            instance.setCurrent(nbt.getInt("Current"));
            instance.setMax(nbt.getInt("Max"));
            instance.setTransformed(nbt.getBoolean("Transformed"));
-           instance.setType(DemonicType.valueOf(nbt.getString("CurrentType")));
+
+           if (nbt.contains("CurrentType")) {
+               try {
+                   instance.setType(DemonicType.valueOf(nbt.getString("CurrentType")));
+               } catch (IllegalArgumentException e) {
+                   instance.setType(DemonicType.NONE);
+               }
+           } else {
+               instance.setType(DemonicType.NONE);
+           }
        }
     }
 }
