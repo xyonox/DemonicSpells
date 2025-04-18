@@ -4,12 +4,14 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.xyonox.demonicspells.DemonicSpells;
 import com.xyonox.demonicspells.blackforce.BlackForceUtil;
 import com.xyonox.demonicspells.demonic.DemonicType;
+import com.xyonox.demonicspells.util.KeyBinding;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiComponent;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.RenderGuiOverlayEvent;
+import net.minecraftforge.client.event.*;
 import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -50,6 +52,30 @@ public class ClientEvents {
         font.drawShadow(poseStack, force_text, x, y, 0xAA00FF);
         font.drawShadow(poseStack, type_text, x, y + 9, 0xAA00FF);
         font.drawShadow(poseStack, String.valueOf(isTransformed), x, y + 18, 0xAA00FF);
+    }
+
+    @Mod.EventBusSubscriber(modid = DemonicSpells.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
+    public static class ClientModBusEvents {
+        @SubscribeEvent
+        public static void onKeyRegister(RegisterKeyMappingsEvent event) {
+            event.register(KeyBinding.TRANSFORM_KEY);
+        }
+    }
+
+    @Mod.EventBusSubscriber(modid = DemonicSpells.MOD_ID, value = Dist.CLIENT)
+    public static class ClientForgeEvents {
+        @SubscribeEvent
+        public static void onKeyInput(InputEvent.Key event) {
+            if(KeyBinding.TRANSFORM_KEY.consumeClick()) {
+                Minecraft mc = Minecraft.getInstance();
+                LocalPlayer player = mc.player;
+
+                if (player != null) {
+                    if(BlackForceUtil.getCurrentType(player) != DemonicType.NONE)
+                        BlackForceUtil.setTransformed(player, !BlackForceUtil.isTransformed(player));
+                }
+            }
+        }
     }
 }
 
