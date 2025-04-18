@@ -1,0 +1,18 @@
+modLoader="javafml"
+loaderVersion="[43,)"
+license="MIT"
+
+[[mods]]
+modId="demonicspells"
+version="1.0.0"
+displayName="Demonic Spells"
+authors="Xyonox"
+description="Eine dunkle Magie-Mod."
+
+
+[[dependencies.demonicspells]]
+modId="geckolib3"
+mandatory=true
+versionRange="[3.1.40,)"
+ordering="AFTER"
+side="BOTH"

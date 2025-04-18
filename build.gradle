@@ -1,0 +1,43 @@
+plugins {
+    id 'net.minecraftforge.gradle' version '5.1.77'
+    id 'eclipse'
+    id 'maven-publish'
+}
+
+group = 'com.xyonox.demonicspells'
+version = '1.0.0'
+archivesBaseName = 'demonicspells'
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+minecraft {
+    mappings channel: 'official', version: '1.19.2'
+    runs {
+        client {
+            workingDirectory project.file('run')
+            mods {
+                demonicspells {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        name = 'GeckoLib'
+        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+        content {
+            includeGroupByRegex("software\\.bernie.*")
+            includeGroup("com.eliotlash.mclib")
+        }
+    }
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.19.2-43.2.0'
+    implementation fg.deobf("software.bernie.geckolib:geckolib-forge-1.19:3.1.40")
+    implementation("com.eliotlash.mclib:mclib:20")
+}
