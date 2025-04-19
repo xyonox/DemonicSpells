@@ -1,7 +1,6 @@
 package com.xyonox.demonicspells.network;
 
 import com.xyonox.demonicspells.capabilities.CapabilityHandler;
-import com.xyonox.demonicspells.blackforce.IBlackForce;
 import com.xyonox.demonicspells.demonic.DemonicType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;

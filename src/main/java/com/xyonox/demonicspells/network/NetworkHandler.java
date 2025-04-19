@@ -23,5 +23,11 @@ public class NetworkHandler {
                 SyncBlackForceS2CPacket::decode,
                 SyncBlackForceS2CPacket::handle
         );
+
+        INSTANCE.registerMessage(id(), TransformC2SPacket.class,
+                TransformC2SPacket::encode,
+                TransformC2SPacket::decode,
+                TransformC2SPacket::handle
+        );
     }
 }

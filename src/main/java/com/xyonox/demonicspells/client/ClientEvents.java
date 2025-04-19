@@ -4,6 +4,8 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.xyonox.demonicspells.DemonicSpells;
 import com.xyonox.demonicspells.blackforce.BlackForceUtil;
 import com.xyonox.demonicspells.demonic.DemonicType;
+import com.xyonox.demonicspells.network.NetworkHandler;
+import com.xyonox.demonicspells.network.TransformC2SPacket;
 import com.xyonox.demonicspells.util.KeyBinding;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -71,8 +73,13 @@ public class ClientEvents {
                 LocalPlayer player = mc.player;
 
                 if (player != null) {
-                    if(BlackForceUtil.getCurrentType(player) != DemonicType.NONE)
-                        BlackForceUtil.setTransformed(player, !BlackForceUtil.isTransformed(player));
+                    if(BlackForceUtil.getCurrentType(player) != DemonicType.NONE) {
+                        boolean currentTransformed = BlackForceUtil.isTransformed(player);
+                        // Statt direkt zu setzen:
+                        // BlackForceUtil.setTransformed(player, !currentTransformed);
+
+                        NetworkHandler.INSTANCE.sendToServer(new TransformC2SPacket(!currentTransformed));
+                    }
                 }
             }
         }

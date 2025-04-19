@@ -6,8 +6,6 @@ import com.xyonox.demonicspells.blackforce.IBlackForce;
 import com.xyonox.demonicspells.capabilities.CapabilityHandler;
 import com.xyonox.demonicspells.item.ModItems;
 import com.xyonox.demonicspells.block.ModBlocks;
-import com.xyonox.demonicspells.network.NetworkHandler;
-import com.xyonox.demonicspells.network.SyncBlackForceS2CPacket;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
@@ -23,11 +21,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.server.ServerLifecycleHooks;
-
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @Mod(DemonicSpells.MOD_ID)
 public class DemonicSpells {
