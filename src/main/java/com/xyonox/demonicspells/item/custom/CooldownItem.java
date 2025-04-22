@@ -14,7 +14,7 @@ public abstract class CooldownItem extends Item {
 
     public CooldownItem(int cooldownSeconds, Properties properties) {
         super(properties);
-        this.cooldownTicks = cooldownSeconds * 20; // 20 Ticks = 1 Sekunde
+        this.cooldownTicks = cooldownSeconds * 20;
     }
 
     @Override

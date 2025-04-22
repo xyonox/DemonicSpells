@@ -15,13 +15,13 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.client.player.AbstractClientPlayer;
 
-public class DearHeadLayer extends RenderLayer<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> {
+public class DemonicsLayers extends RenderLayer<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> {
 
-    private final DearModel<AbstractClientPlayer> model;
+    private final DearModel<AbstractClientPlayer> dearModel;
 
-    public DearHeadLayer(RenderLayerParent<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> parent, EntityModelSet modelSet) {
+    public DemonicsLayers(RenderLayerParent<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> parent, EntityModelSet modelSet) {
         super(parent);
-        this.model = new DearModel<>(modelSet.bakeLayer(DearModel.LAYER_LOCATION));
+        this.dearModel = new DearModel<>(modelSet.bakeLayer(DearModel.LAYER_LOCATION));
     }
 
     @Override
@@ -29,20 +29,23 @@ public class DearHeadLayer extends RenderLayer<AbstractClientPlayer, PlayerModel
                        float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
 
         player.getCapability(CapabilityHandler.BLACK_FORCE_CAPABILITY).ifPresent(cap -> {
-            if (!cap.isTransformed() || cap.getType() != DemonicType.DEAR) return;
+            if (!cap.isTransformed()) return;
+            if (cap.getType() == DemonicType.DEAR){
+                poseStack.pushPose();
 
-            poseStack.pushPose();
+                getParentModel().head.translateAndRotate(poseStack);
 
-            getParentModel().head.translateAndRotate(poseStack);
+                poseStack.translate(0.0, -0.25
+                        , 0.0);
+                poseStack.scale(0.7f, 0.7f, 0.7f);
 
-            poseStack.translate(0.0, -0.25
-                    , 0.0);
-            poseStack.scale(0.7f, 0.7f, 0.7f);
+                VertexConsumer vertex = bufferSource.getBuffer(RenderType.entityTranslucent(new ResourceLocation("demonicspells", "textures/entity/dear.png")));
+                dearModel.renderToBuffer(poseStack, vertex, packedLight, OverlayTexture.NO_OVERLAY, 1F, 1F, 1F, 1F);
 
-            VertexConsumer vertex = bufferSource.getBuffer(RenderType.entityTranslucent(new ResourceLocation("demonicspells", "textures/entity/dear.png")));
-            model.renderToBuffer(poseStack, vertex, packedLight, OverlayTexture.NO_OVERLAY, 1F, 1F, 1F, 1F);
+                poseStack.popPose();
+            }
 
-            poseStack.popPose();
+
         });
     }
 }

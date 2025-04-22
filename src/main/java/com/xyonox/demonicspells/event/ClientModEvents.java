@@ -1,6 +1,6 @@
 package com.xyonox.demonicspells.event;
 
-import com.xyonox.demonicspells.demonic.layer.DearHeadLayer;
+import com.xyonox.demonicspells.demonic.layer.DemonicsLayers;
 import com.xyonox.demonicspells.demonic.model.DearModel;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
@@ -23,7 +23,7 @@ public class ClientModEvents {
 
         for (String skinType : event.getSkins()) {
             PlayerRenderer renderer = event.getSkin(skinType);
-            renderer.addLayer(new DearHeadLayer(renderer, modelSet));
+            renderer.addLayer(new DemonicsLayers(renderer, modelSet));
         }
     }
 }
