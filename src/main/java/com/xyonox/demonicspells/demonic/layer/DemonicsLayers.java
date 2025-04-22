@@ -51,7 +51,7 @@ public class DemonicsLayers extends RenderLayer<AbstractClientPlayer, PlayerMode
 
                 getParentModel().head.translateAndRotate(poseStack);
 
-                poseStack.translate(0.0, -0.25
+                poseStack.translate(0.0, -0.1
                         , 0.0);
                 poseStack.scale(0.7f, 0.7f, 0.7f);
 

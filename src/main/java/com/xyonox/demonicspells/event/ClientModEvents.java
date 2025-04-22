@@ -2,6 +2,7 @@ package com.xyonox.demonicspells.event;
 
 import com.xyonox.demonicspells.demonic.layer.DemonicsLayers;
 import com.xyonox.demonicspells.demonic.model.DearModel;
+import com.xyonox.demonicspells.demonic.model.OniModel;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraftforge.api.distmarker.Dist;
@@ -15,6 +16,7 @@ public class ClientModEvents {
     @SubscribeEvent
     public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(DearModel.LAYER_LOCATION, DearModel::createBodyLayer);
+        event.registerLayerDefinition(OniModel.LAYER_LOCATION, OniModel::createBodyLayer);
     }
 
     @SubscribeEvent

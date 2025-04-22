@@ -19,7 +19,7 @@ public class ILikeTestItems extends Item {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
-        BlackForceUtil.setCurrentType(player, DemonicType.DEAR);
+        BlackForceUtil.setCurrentType(player, DemonicType.ONI);
         ItemStack itemStack = player.getItemInHand(interactionHand);
         player.getInventory().removeItem(itemStack);
 
