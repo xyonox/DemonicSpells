@@ -10,6 +10,7 @@ import net.minecraft.world.level.Level;
 public abstract class CooldownItem extends Item {
 
     private final int cooldownTicks;
+    private boolean cancelable = false;
 
     public CooldownItem(int cooldownSeconds, Properties properties) {
         super(properties);
@@ -23,11 +24,15 @@ public abstract class CooldownItem extends Item {
         if (!level.isClientSide) {
             if (!player.getCooldowns().isOnCooldown(this)) {
                 castSpell(level, player, hand, itemStack);
-                player.getCooldowns().addCooldown(this, cooldownTicks);
+                if(!cancelable) player.getCooldowns().addCooldown(this, cooldownTicks);
             }
         }
 
         return InteractionResultHolder.sidedSuccess(itemStack, level.isClientSide());
+    }
+
+    public void setCancelable(boolean cancelable) {
+        this.cancelable = cancelable;
     }
 
     protected abstract void castSpell(Level level, Player player, InteractionHand hand, ItemStack stack);

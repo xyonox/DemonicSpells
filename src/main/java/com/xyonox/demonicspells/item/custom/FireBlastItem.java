@@ -16,15 +16,12 @@ public class FireBlastItem extends CooldownItem {
 
     @Override
     protected void castSpell(Level level, Player player, InteractionHand hand, ItemStack stack) {
-
         if(BlackForceUtil.consume(player, 50)){
             player.sendSystemMessage(Component.literal("🔥 Fire Blast ausgelöst!"));
-
-            // Beispiel-Zauber: Player brennt 2 Sekunden
             player.setSecondsOnFire(2);
-
             stack.hurtAndBreak(1, player, (p) -> p.broadcastBreakEvent(hand));
+        } else {
+            setCancelable(true);
         }
-
     }
 }
