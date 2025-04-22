@@ -1,7 +1,8 @@
-package com.xyonox.demonicspells.demonic.model;// Made with Blockbench 4.12.4
+package com.xyonox.demonicspells.demonic.model;
+
+// Made with Blockbench 4.12.4
 // Exported for Minecraft version 1.17 or later with Mojang mappings
 // Paste this class into your mod and generate all required imports
-
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
