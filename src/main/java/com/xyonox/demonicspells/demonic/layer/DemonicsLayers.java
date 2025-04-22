@@ -5,6 +5,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.xyonox.demonicspells.capabilities.CapabilityHandler;
 import com.xyonox.demonicspells.demonic.DemonicType;
 import com.xyonox.demonicspells.demonic.model.DearModel;
+import com.xyonox.demonicspells.demonic.model.OniModel;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -18,10 +19,12 @@ import net.minecraft.client.player.AbstractClientPlayer;
 public class DemonicsLayers extends RenderLayer<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> {
 
     private final DearModel<AbstractClientPlayer> dearModel;
+    private final OniModel<AbstractClientPlayer> oniModel;
 
     public DemonicsLayers(RenderLayerParent<AbstractClientPlayer, PlayerModel<AbstractClientPlayer>> parent, EntityModelSet modelSet) {
         super(parent);
         this.dearModel = new DearModel<>(modelSet.bakeLayer(DearModel.LAYER_LOCATION));
+        this.oniModel = new OniModel<>(modelSet.bakeLayer(OniModel.LAYER_LOCATION));
     }
 
     @Override
@@ -41,6 +44,19 @@ public class DemonicsLayers extends RenderLayer<AbstractClientPlayer, PlayerMode
 
                 VertexConsumer vertex = bufferSource.getBuffer(RenderType.entityTranslucent(new ResourceLocation("demonicspells", "textures/entity/dear.png")));
                 dearModel.renderToBuffer(poseStack, vertex, packedLight, OverlayTexture.NO_OVERLAY, 1F, 1F, 1F, 1F);
+
+                poseStack.popPose();
+            } else if (cap.getType() == DemonicType.ONI) {
+                poseStack.pushPose();
+
+                getParentModel().head.translateAndRotate(poseStack);
+
+                poseStack.translate(0.0, -0.25
+                        , 0.0);
+                poseStack.scale(0.7f, 0.7f, 0.7f);
+
+                VertexConsumer vertex = bufferSource.getBuffer(RenderType.entityTranslucent(new ResourceLocation("demonicspells", "textures/entity/oni.png")));
+                oniModel.renderToBuffer(poseStack, vertex, packedLight, OverlayTexture.NO_OVERLAY, 1F, 1F, 1F, 1F);
 
                 poseStack.popPose();
             }
