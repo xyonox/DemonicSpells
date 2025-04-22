@@ -30,6 +30,5 @@ public abstract class CooldownItem extends Item {
         return InteractionResultHolder.sidedSuccess(itemStack, level.isClientSide());
     }
 
-    // Muss von Kindern überschrieben werden:
     protected abstract void castSpell(Level level, Player player, InteractionHand hand, ItemStack stack);
 }

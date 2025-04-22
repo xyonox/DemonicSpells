@@ -14,4 +14,3 @@ public enum DemonicType {
         return modelName;
     }
 }
-//https://discord.com/channels/1129059589325852724/1129069842805301371/1362874847058989449

@@ -1,7 +1,6 @@
 package com.xyonox.demonicspells.event;
 
 import com.xyonox.demonicspells.DemonicSpells;
-import com.xyonox.demonicspells.blackforce.IBlackForce;
 import com.xyonox.demonicspells.capabilities.CapabilityAttacher;
 import com.xyonox.demonicspells.capabilities.CapabilityHandler;
 import com.xyonox.demonicspells.demonic.DemonicType;
@@ -9,7 +8,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = DemonicSpells.MOD_ID)
@@ -21,14 +19,13 @@ public class CapabilitySyncEvents {
         Player oldPlayer = event.getOriginal();
         Player newPlayer = event.getEntity();
 
-        oldPlayer.reviveCaps(); // wichtig!
+        oldPlayer.reviveCaps();
 
         oldPlayer.getCapability(CapabilityHandler.BLACK_FORCE_CAPABILITY).ifPresent(oldCap -> {
             CompoundTag nbt = new CompoundTag();
             CapabilityAttacher.BlackForceProvider tempProvider = new CapabilityAttacher.BlackForceProvider();
-            nbt = tempProvider.serializeNBT(); // oder direkt oldCap serialize, siehe unten
+            nbt = tempProvider.serializeNBT();
 
-            // Sicherer: manuell schreiben
             CompoundTag data = new CompoundTag();
             data.putInt("Current", oldCap.getCurrent());
             data.putInt("Max", oldCap.getMax());
@@ -44,7 +41,6 @@ public class CapabilitySyncEvents {
         });
     }
 
-    // ✅ Beim Speichern in .dat-Datei (z. B. Welt verlassen)
     @SubscribeEvent
     public static void onPlayerSave(PlayerEvent.SaveToFile event) {
         Player player = event.getEntity();
@@ -59,7 +55,6 @@ public class CapabilitySyncEvents {
         });
     }
 
-    // ✅ Beim Laden aus .dat-Datei (z. B. Join nach Minecraft-Neustart)
     @SubscribeEvent
     public static void onPlayerLoad(PlayerEvent.LoadFromFile event) {
         Player player = event.getEntity();

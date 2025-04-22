@@ -4,6 +4,7 @@ import com.xyonox.demonicspells.DemonicSpells;
 import com.xyonox.demonicspells.block.ModBlocks;
 import com.xyonox.demonicspells.item.custom.FireBlastItem;
 import com.xyonox.demonicspells.item.custom.ILikeTestItems;
+import com.xyonox.demonicspells.item.custom.TestiTestoDreiItme;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -27,8 +28,10 @@ public class ModItems {
     public static final RegistryObject<Item> TESTO_TESTI= ITEMS.register("testo_testi",
             () -> new ILikeTestItems(new Item.Properties().tab(ModCreativeModeTab.DEMONIC_TAB)));
 
+    public static final RegistryObject<Item> TESTO_TESTIDREI= ITEMS.register("testo_testidrei",
+            () -> new TestiTestoDreiItme(new Item.Properties().tab(ModCreativeModeTab.DEMONIC_TAB)));
 
-    // Diese Methode registriert automatisch BlockItems zu den Blöcken
+
     public static void registerBlockItems() {
         ModBlocks.BLOCKS.getEntries().forEach(block -> {
             String name = block.getId().getPath();

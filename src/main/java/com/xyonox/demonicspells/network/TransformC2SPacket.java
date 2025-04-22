@@ -25,7 +25,7 @@ public class TransformC2SPacket {
         ctx.get().enqueueWork(() -> {
             var player = ctx.get().getSender();
             if (player != null) {
-                BlackForceUtil.setTransformed(player, packet.newState); // setzt + synced automatisch
+                BlackForceUtil.setTransformed(player, packet.newState);
             }
         });
         ctx.get().setPacketHandled(true);

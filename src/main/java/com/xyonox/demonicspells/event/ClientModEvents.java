@@ -3,7 +3,6 @@ package com.xyonox.demonicspells.event;
 import com.xyonox.demonicspells.demonic.layer.DearHeadLayer;
 import com.xyonox.demonicspells.demonic.model.DearModel;
 import net.minecraft.client.model.geom.EntityModelSet;
-import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;

@@ -1,7 +1,6 @@
 package com.xyonox.demonicspells.setup;
 
 import com.xyonox.demonicspells.DemonicSpells;
-import com.xyonox.demonicspells.capabilities.CapabilityHandler;
 import com.xyonox.demonicspells.network.NetworkHandler;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;

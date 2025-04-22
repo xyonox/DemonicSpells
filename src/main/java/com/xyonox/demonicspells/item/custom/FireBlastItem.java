@@ -1,6 +1,5 @@
 package com.xyonox.demonicspells.item.custom;
 
-import com.xyonox.demonicspells.DemonicSpells;
 import com.xyonox.demonicspells.blackforce.BlackForceUtil;
 import com.xyonox.demonicspells.item.ModCreativeModeTab;
 import net.minecraft.network.chat.Component;

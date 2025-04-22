@@ -25,15 +25,15 @@ public class SyncBlackForceS2CPacket {
     public static void encode(SyncBlackForceS2CPacket packet, FriendlyByteBuf buf) {
         buf.writeInt(packet.current);
         buf.writeInt(packet.max);
-        buf.writeBoolean(packet.transformed);  // Serialisieren des 'transformed'-Status
-        buf.writeUtf(packet.currentType.toString());  // Serialisieren des 'currentType' als String
+        buf.writeBoolean(packet.transformed);
+        buf.writeUtf(packet.currentType.toString());
     }
 
     public static SyncBlackForceS2CPacket decode(FriendlyByteBuf buf) {
         int current = buf.readInt();
         int max = buf.readInt();
-        boolean transformed = buf.readBoolean();  // Deserialisieren des 'transformed'-Status
-        DemonicType currentType = DemonicType.valueOf(buf.readUtf());  // Deserialisieren des 'currentType'
+        boolean transformed = buf.readBoolean();
+        DemonicType currentType = DemonicType.valueOf(buf.readUtf());
         return new SyncBlackForceS2CPacket(current, max, transformed, currentType);
     }
 
@@ -44,8 +44,8 @@ public class SyncBlackForceS2CPacket {
                 player.getCapability(CapabilityHandler.BLACK_FORCE_CAPABILITY).ifPresent(force -> {
                     force.setCurrent(packet.current);
                     force.setMax(packet.max);
-                    force.setTransformed(packet.transformed);  // Setzen des 'transformed'-Status
-                    force.setType(packet.currentType);  // Setzen des 'currentType'
+                    force.setTransformed(packet.transformed);
+                    force.setType(packet.currentType);
                 });
             }
         });

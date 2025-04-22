@@ -23,11 +23,9 @@ public class ILikeTestItems extends Item {
         ItemStack itemStack = player.getItemInHand(interactionHand);
         player.getInventory().removeItem(itemStack);
 
-        // Toggle den Transformationsstatus
         boolean currentTransformed = BlackForceUtil.isTransformed(player);
         BlackForceUtil.setTransformed(player, !currentTransformed);
 
-        // Feedback an den Spieler
         String status = BlackForceUtil.isTransformed(player) ? "transformed" : "not transformed";
         player.displayClientMessage(Component.literal("You are now in " + status + " form with DEAR type."), true);
 
